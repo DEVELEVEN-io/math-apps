@@ -1,22 +1,18 @@
-// src/screens/HomeScreen.tsx
-
 import React, { useState } from 'react';
 import { StyleSheet, TextInput } from 'react-native';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
-import CalculatorCard from '@/components/CalculatorCard'; // Adjust import path as per your project structure
-import images from '@/constants/images';
+import CalculatorCard from '@/components/CalculatorCard';
+import icons from '../../constants/icons'; // Adjust the path based on your project structure
 
 export default function HomeScreen() {
   const [searchQuery, setSearchQuery] = useState('');
 
   const financialCalculatorData = [
-    { name: "Investment Calculator", img: images.profit_80 },
-    { name: "Salary Calculator", img: images.cash_80 },
-    { name: "Interest Calculator", img: images.increase_80 },
+    { name: "Investment Calculator", img: icons.calculator_80 },
+    { name: "Salary Calculator", img: icons.calculator_80 },
+    { name: "Interest Calculator", img: icons.calculator_80 },
   ];
-
-  // Define other data arrays similarly for unit conversion, area calculation, time calculation, etc.
 
   return (
     <ThemedView style={styles.container}>
@@ -34,7 +30,6 @@ export default function HomeScreen() {
       </ThemedView>
 
       <ThemedView style={styles.cardsContainer}>
-        {/* Render your CalculatorCard components here */}
         <CalculatorCard dataItems={financialCalculatorData} />
         {/* Render other CalculatorCard components for different data arrays */}
       </ThemedView>
