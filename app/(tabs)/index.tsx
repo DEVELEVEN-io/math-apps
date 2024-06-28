@@ -1,35 +1,55 @@
+// src/screens/HomeScreen.tsx
+
 import React, { useState } from 'react';
-import { Image, StyleSheet, Platform, TextInput } from 'react-native';
+import { StyleSheet, TextInput } from 'react-native';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
+import CalculatorCard from '@/components/CalculatorCard'; // Adjust import path as per your project structure
+import images from '@/constants/images';
 
 export default function HomeScreen() {
   const [searchQuery, setSearchQuery] = useState('');
 
+  const financialCalculatorData = [
+    { name: "Investment Calculator", img: images.profit_80 },
+    { name: "Salary Calculator", img: images.cash_80 },
+    { name: "Interest Calculator", img: images.increase_80 },
+  ];
+
+  // Define other data arrays similarly for unit conversion, area calculation, time calculation, etc.
+
   return (
-    <>
+    <ThemedView style={styles.container}>
       <ThemedView style={styles.searchContainer}>
-      <ThemedText type="title">math-apps</ThemedText>
-      <ThemedText type="subtitle">Explore Apps</ThemedText>
+        <ThemedText type="title">Math Apps</ThemedText>
+        <ThemedText type="subtitle">Explore Apps</ThemedText>
 
         <TextInput
           style={styles.searchBar}
           placeholder="Search..."
-          placeholderTextColor="#888"
+          placeholderTextColor="#fff"
           value={searchQuery}
           onChangeText={setSearchQuery}
-          />
+        />
       </ThemedView>
-      <ThemedView style={styles.titleContainer}>
-        
+
+      <ThemedView style={styles.cardsContainer}>
+        {/* Render your CalculatorCard components here */}
+        <CalculatorCard dataItems={financialCalculatorData} />
+        {/* Render other CalculatorCard components for different data arrays */}
       </ThemedView>
-    </>
+    </ThemedView>
   );
 }
 
 const styles = StyleSheet.create({
-  searchContainer: {
+  container: {
+    flex: 1,
     padding: 16,
+    backgroundColor: '#333', // Adjust as per your theme
+  },
+  searchContainer: {
+    marginBottom: 16,
   },
   searchBar: {
     color: '#fff',
@@ -39,20 +59,9 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     paddingHorizontal: 8,
   },
-  titleContainer: {
+  cardsContainer: {
     flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-  },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
-  },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between', // Adjust as per your layout needs
   },
 });
